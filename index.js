@@ -1,31 +1,64 @@
 // To do: Import inquirer and fs
 const inquirer = require('inquirer');
-const fs = require('fs');
+const createSVG = require('./js/createSVG.js')
 
 // todo: fs.then make all the command line questions to build the logo then call the function to build the logo and save it to the SVGs folder
 
-inquirer
-.createPromptModule([
+const App = inquirer
+.prompt([
     {
         type: 'confirm',
-        message: 'Welcome to MyEasyLogo app. You will be prompted'
+        message: 'Welcome to MyEasyLogo app. You will be prompted with some questions in order to build your logo. Have in mind the shape of the logo, the three letters you want in it, the color the shape and the color of the letters. Got it?',
+        name: 'intro'
     },
     {
         type: 'list',
         message: 'What shape do you want yuour logo to have?',
-        choices: ['Triangle','Swaure', 'Circle']
+        choices: ['Triangle','Square', 'Circle'],
+        name: 'shape'
     },
     {
         type: 'input',
-        message: 'What color do you want the shape to be?'
+        message: 'What color do you want the shape to be? (type a color name or a hexadecimal value)',
+        name: 'shapeColor',
+        validate: (value) => {
+            if(value) {
+                return true
+            } else {
+                return "I need a color to continue."
+            }
+        }
     },
     {
         type: 'input',
         message: 'Enter 3 characters to be you logo text.',
-        name: 'logoText'
+        name: 'text',
+        validate: (value) => {
+            if(value) {
+                return true
+            } else {
+                return "I need text to continue"
+            }
+        }
     },
-
+    {
+        type: 'input',
+        message: 'What color do you want your letters to be?',
+        name: 'textColor',
+        validate: (value) => {
+            if(value) {
+                return true
+            } else {
+                return "I need the text color to continue"
+            }
+        }
+    }
 ])
+.then(function(answers){
+    createSVG(answers.shape, answers.shapeColor, answers.text, answers.textColor)
+})
+
+module.exports = App;
 // GIVEN a command-line application that accepts user input
 // WHEN I am prompted for text
 // THEN I can enter up to three characters

@@ -1,6 +1,17 @@
 {
+  "name": "myeasylogo",
+  "version": "1.0.0",
+  "description": "This is a powerful tool that will generate the logotype you need with just a few questions on your command-line, saving you time and money. It's just like magic!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
-    "inquirer": "^9.2.10"
+    "inquirer": "^8.2.4"
   },
   "devDependencies": {
     "jest": "^29.6.4"
