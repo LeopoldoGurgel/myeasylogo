@@ -13,8 +13,8 @@ class Square extends Shape{
 
 class Triangle extends Shape{
     render(){
-        return `<circle cx="150" cy="100" r="80" fill="${this.shapeColor}" />`
-        }
+        return `<polyline points="150,20 70,180, 230,180" fill="${this.shapeColor}" />`
+        };
 }
 
 class Circle extends Shape{
