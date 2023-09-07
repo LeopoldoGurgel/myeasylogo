@@ -34,10 +34,12 @@ const App = inquirer
         message: 'Enter 3 characters to be you logo text.',
         name: 'text',
         validate: (value) => {
-            if(value) {
+            if(value && /^.{1,3}$/.test(value)) {
                 return true
+            } else if(!value) {
+                return "I need a text to continue."
             } else {
-                return "I need text to continue"
+                return "Your text must have 3 or less characters."
             }
         }
     },
@@ -56,6 +58,9 @@ const App = inquirer
 ])
 .then(function(answers){
     createSVG(answers.shape, answers.shapeColor, answers.text, answers.textColor)
+})
+.catch((error) => {
+    console.error(`Error: `, error)
 })
 
 module.exports = App;

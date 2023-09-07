@@ -14,7 +14,7 @@ function createSVG(shape, shapeColor, text, textColor){
     } else if (shape == 'Square'){
         selectedShape = new Square(shapeColor)
     }
-    console.log(selectedShape.render())
+    // console.log(selectedShape.render())
     return assembleFile(text, textColor,shape, selectedShape)
 }
 module.exports = createSVG;
